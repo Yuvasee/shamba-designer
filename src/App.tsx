@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { Drum } from "./components/Drum";
 import { Pattern } from "./components/Pattern";
+import { Preloader } from "./components/Preloader";
 import { initState, reducer } from "./state/reducer";
 import { State, Action } from "./state/types";
 
@@ -22,6 +23,8 @@ export const App = () => {
 
     return (
         <AppDiv>
+            <Preloader />
+
             <StateContext.Provider value={[state, dispatch]}>
                 <Drum
                     scale={state.scale}

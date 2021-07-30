@@ -12,12 +12,17 @@ const PatternSelectorDiv = styled.div`
     display: flex;
 `;
 
-const PatternDiv = styled.div<{ pattern: number }>`
+const PatternDiv = styled.div<{ fileName: string }>`
     width: ${PATTERN_SIZE_PX}px;
     height: ${PATTERN_SIZE_PX}px;
-    background-image: url("/assets/i/patterns/${(p) => String(p.pattern).padStart(2, "0")}.png");
+    background-image: url("/assets/i/patterns/${(p) => p.fileName}.png");
     background-size: cover;
     margin: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-image: url("/assets/i/patterns/${(p) => p.fileName}G.png");
+    }
 `;
 
 export const Pattern = () => {
@@ -26,14 +31,19 @@ export const Pattern = () => {
     return (
         <PatternContainerDiv>
             <PropertyHeaderDiv>Pattern</PropertyHeaderDiv>
+
             <PatternSelectorDiv>
-                {Array.from({ length: 16 }).map((_, i) => (
-                    <PatternDiv
-                        key={i}
-                        pattern={i + 1}
-                        onClick={() => dispatch({ type: "setPattern", payload: i })}
-                    ></PatternDiv>
-                ))}
+                {Array.from({ length: 16 }).map((_, i) => {
+                    const fileName = String(i + 1).padStart(2, "0");
+
+                    return (
+                        <PatternDiv
+                            key={i}
+                            fileName={fileName}
+                            onClick={() => dispatch({ type: "setPattern", payload: i })}
+                        ></PatternDiv>
+                    );
+                })}
             </PatternSelectorDiv>
         </PatternContainerDiv>
     );
