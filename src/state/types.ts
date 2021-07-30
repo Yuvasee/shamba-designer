@@ -16,7 +16,7 @@ export type State = {
     patternColor: PatternColorId;
 };
 
-export type ActionType = "setPattern";
+export type ActionType = "setPattern" | "setPatternColor";
 
 export type Action = {
     type: ActionType;

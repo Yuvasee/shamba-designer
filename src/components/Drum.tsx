@@ -19,5 +19,5 @@ const DrumDiv = styled.div<DrumDivProps>`
 
 export const Drum: FC<Omit<State, "mainState">> = ({ scale, pattern, color, patternColor }) => {
     const sprite = `${color}_${String(pattern + 1).padStart(2, "0")}`;
-    return <DrumDiv sprite={sprite} bgShift={7}></DrumDiv>;
+    return <DrumDiv sprite={sprite} bgShift={patternColor}></DrumDiv>;
 };

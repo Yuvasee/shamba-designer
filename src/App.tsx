@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { Drum } from "./components/Drum";
 import { Pattern } from "./components/Pattern";
+import { PatternColor } from "./components/PatternColor";
 import { Preloader } from "./components/Preloader";
 import { initState, reducer } from "./state/reducer";
 import { State, Action } from "./state/types";
@@ -22,19 +23,23 @@ export const App = () => {
     const [state, dispatch] = useReducer(reducer, initState);
 
     return (
-        <AppDiv>
+        <>
             <Preloader />
+            <AppDiv>
+                <StateContext.Provider value={[state, dispatch]}>
+                    <Drum
+                        scale={state.scale}
+                        color={state.color}
+                        pattern={state.pattern}
+                        patternColor={state.patternColor}
+                    />
 
-            <StateContext.Provider value={[state, dispatch]}>
-                <Drum
-                    scale={state.scale}
-                    color={state.color}
-                    pattern={state.pattern}
-                    patternColor={state.patternColor}
-                />
-                <Pattern />
-            </StateContext.Provider>
-        </AppDiv>
+                    <Pattern />
+
+                    <PatternColor />
+                </StateContext.Provider>
+            </AppDiv>
+        </>
     );
 };
 

@@ -1,5 +1,5 @@
 import { Reducer } from "react";
-import { State, Action, ActionMap, Pattern } from "./types";
+import { State, Action, ActionMap, Pattern, PatternColorId } from "./types";
 
 export const initState: State = {
     mainState: "splash",
@@ -11,7 +11,15 @@ export const initState: State = {
 
 export const reducer: Reducer<State, Action> = (state, action) => {
     const actionMap: ActionMap = {
-        setPattern: (state: State, payload: Pattern) => ({ ...state, pattern: payload }),
+        setPattern: (state: State, payload: Pattern) => ({
+            ...state,
+            pattern: payload,
+        }),
+
+        setPatternColor: (state: State, payload: PatternColorId) => ({
+            ...state,
+            patternColor: payload,
+        }),
     };
 
     return actionMap[action.type]?.(state, action.payload) || state;
