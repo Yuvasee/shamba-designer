@@ -9,16 +9,21 @@ export type Scale = {
 };
 
 export type State = {
+    mainState: "splash" | "main";
     scale: ScaleId;
-    drumColor: DrumColor;
+    color: DrumColor;
     pattern: Pattern;
     patternColor: PatternColorId;
 };
 
+export type ActionType = "setPattern";
+
 export type Action = {
-    type: string;
-    payload?: object;
+    type: ActionType;
+    payload?: any;
 };
+
+export type ActionMap = Record<ActionType, (state: State, payload: any) => State>;
 
 export type ScaleId =
     | "akebonoC"
