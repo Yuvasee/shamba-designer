@@ -1,7 +1,50 @@
+import { useContext } from "react";
 import styled from "styled-components";
 
-const ScaleDiv = styled.div``;
+import { StateContext } from "../App";
+import { MENU_ITEM_COLOR, FONT_FAMILY } from "../constants";
+import { PropertyHeader } from "../elements/PropertyHeader";
+import { scales } from "../state/data";
+
+const ScaleDiv = styled.div`
+    color: ${MENU_ITEM_COLOR};
+    font-size: 12px;
+    font-family: ${FONT_FAMILY};
+`;
+
+const ScaleItemDiv = styled.div`
+    cursor: pointer;
+    margin-left: -10px;
+    margin-bottom: 3px;
+
+    &:nth-child(2n-1) {
+        margin-bottom: 10px;
+    }
+
+    span {
+        padding: 0 10px;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: #333;
+        }
+    }
+`;
 
 export const Scale = () => {
-    return <ScaleDiv></ScaleDiv>;
+    const [, dispatch] = useContext(StateContext);
+
+    const scalesList = Object.values(scales);
+
+    return (
+        <ScaleDiv>
+            <PropertyHeader>Scale</PropertyHeader>
+
+            {scalesList.map((scale) => (
+                <ScaleItemDiv onClick={() => dispatch({ type: "setScale", payload: scale.id })}>
+                    <span>{scale.title}</span>
+                </ScaleItemDiv>
+            ))}
+        </ScaleDiv>
+    );
 };

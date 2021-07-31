@@ -1,8 +1,9 @@
+import { useContext } from "react";
 import styled from "styled-components";
 
+import { StateContext } from "../App";
 import { FONT_FAMILY, MENU_ITEM_COLOR } from "../constants";
 import { PropertyHeader } from "../elements/PropertyHeader";
-
 import { drumColors } from "../state/data";
 
 const ColorDiv = styled.div`
@@ -30,12 +31,14 @@ const ColorItemDiv = styled.div`
 `;
 
 export const Color = () => {
+    const [, dispatch] = useContext(StateContext);
+
     return (
         <ColorDiv>
             <PropertyHeader>Pattern</PropertyHeader>
 
             {drumColors.map((color) => (
-                <ColorItemDiv>
+                <ColorItemDiv onClick={() => dispatch({ type: "setColor", payload: color })}>
                     <span>{color}</span>
                 </ColorItemDiv>
             ))}
