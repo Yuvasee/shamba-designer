@@ -10,12 +10,14 @@ const ScaleDiv = styled.div`
     color: ${MENU_ITEM_COLOR};
     font-size: 12px;
     font-family: ${FONT_FAMILY};
+    margin-bottom: 30px;
 `;
 
 const ScaleItemDiv = styled.div`
     cursor: pointer;
     margin-left: -10px;
     margin-bottom: 3px;
+    white-space: nowrap;
 
     &:nth-child(2n-1) {
         margin-bottom: 10px;
@@ -41,8 +43,10 @@ export const Scale = () => {
             <PropertyHeader>Scale</PropertyHeader>
 
             {scalesList.map((scale) => (
-                <ScaleItemDiv onClick={() => dispatch({ type: "setScale", payload: scale.id })}>
-                    <span>{scale.title}</span>
+                <ScaleItemDiv>
+                    <span onClick={() => dispatch({ type: "setScale", payload: scale.id })}>
+                        {scale.title}
+                    </span>
                 </ScaleItemDiv>
             ))}
         </ScaleDiv>

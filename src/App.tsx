@@ -1,5 +1,6 @@
 import { createContext, Dispatch, useReducer } from "react";
 import styled from "styled-components";
+import isMobile from "is-mobile";
 
 import { Color } from "./components/Color";
 import { Drum } from "./components/Drum";
@@ -11,13 +12,13 @@ import { Scale } from "./components/Scale";
 import { State, Action } from "./state/types";
 
 const AppDiv = styled.div`
-    display: inline-block;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
+
+const AppInnerDiv = styled.div``;
 
 export const StateContext = createContext<[State, Dispatch<Action>]>([] as any);
 
@@ -29,20 +30,24 @@ export const App = () => {
             <Preloader />
 
             <AppDiv>
-                <Drum
-                    scale={state.scale}
-                    color={state.color}
-                    pattern={state.pattern}
-                    patternColor={state.patternColor}
-                />
+                <AppInnerDiv style={{ marginLeft: "20px" }}>
+                    <Scale />
+                    <Color />
+                </AppInnerDiv>
 
-                <Pattern />
+                <AppInnerDiv style={{ alignSelf: "center" }}>
+                    <Drum
+                        scale={state.scale}
+                        color={state.color}
+                        pattern={state.pattern}
+                        patternColor={state.patternColor}
+                    />
+                </AppInnerDiv>
 
-                <PatternColor />
-
-                <Color />
-
-                <Scale />
+                <AppInnerDiv>
+                    <Pattern />
+                    <PatternColor />
+                </AppInnerDiv>
             </AppDiv>
         </StateContext.Provider>
     );

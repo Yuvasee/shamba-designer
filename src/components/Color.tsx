@@ -35,11 +35,13 @@ export const Color = () => {
 
     return (
         <ColorDiv>
-            <PropertyHeader>Pattern</PropertyHeader>
+            <PropertyHeader>Drum Color</PropertyHeader>
 
             {drumColors.map((color) => (
-                <ColorItemDiv onClick={() => dispatch({ type: "setColor", payload: color })}>
-                    <span>{color}</span>
+                <ColorItemDiv>
+                    <span onClick={() => dispatch({ type: "setColor", payload: color })}>
+                        {color}
+                    </span>
                 </ColorItemDiv>
             ))}
         </ColorDiv>

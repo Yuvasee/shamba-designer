@@ -11,17 +11,20 @@ type PatternColorDivProps = {
 
 const PATTERN_COLOR_SIZE_PX = 24;
 
-const PatternColorContainerDiv = styled.div``;
+const PatternColorContainerDiv = styled.div`
+    max-width: 140px;
+`;
 
 const PatternColorSelectorDiv = styled.div`
     display: flex;
+    flex-wrap: wrap;
 `;
 
 const PatternColorDiv = styled.div<PatternColorDivProps>`
     width: ${PATTERN_COLOR_SIZE_PX}px;
     height: ${PATTERN_COLOR_SIZE_PX}px;
     background-color: ${(p) => p.color};
-    margin: 5px;
+    margin: 3px;
     cursor: pointer;
     border: ${(p) => (p.border ? "thin solid white" : "none")};
     border-radius: 50%;

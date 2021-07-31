@@ -6,10 +6,14 @@ import { PropertyHeader } from "../elements/PropertyHeader";
 
 const PATTERN_SIZE_PX = 40;
 
-const PatternContainerDiv = styled.div``;
+const PatternContainerDiv = styled.div`
+    margin-bottom: 24px;
+    max-width: 210px;
+`;
 
 const PatternSelectorDiv = styled.div`
     display: flex;
+    flex-wrap: wrap;
 `;
 
 const PatternDiv = styled.div<{ fileName: string }>`
@@ -41,7 +45,7 @@ export const Pattern = () => {
                             key={i}
                             fileName={fileName}
                             onClick={() => dispatch({ type: "setPattern", payload: i })}
-                        ></PatternDiv>
+                        />
                     );
                 })}
             </PatternSelectorDiv>
