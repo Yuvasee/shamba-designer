@@ -9,6 +9,7 @@ export type Scale = {
 };
 
 export type State = {
+    verticalView: boolean;
     mainState: "splash" | "main";
     scale: ScaleId;
     color: DrumColor;
@@ -16,7 +17,12 @@ export type State = {
     patternColor: PatternColorId;
 };
 
-export type ActionType = "setPattern" | "setPatternColor" | "setColor" | "setScale";
+export type ActionType =
+    | "setPattern"
+    | "setPatternColor"
+    | "setColor"
+    | "setScale"
+    | "verticalView";
 
 export type Action = {
     type: ActionType;

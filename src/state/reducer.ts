@@ -2,6 +2,7 @@ import { Reducer } from "react";
 import { State, Action, ActionMap, Pattern, PatternColorId, DrumColor, ScaleId } from "./types";
 
 export const initState: State = {
+    verticalView: false,
     mainState: "splash",
     scale: "akebonoC",
     color: "Gray",
@@ -29,6 +30,11 @@ export const reducer: Reducer<State, Action> = (state, action) => {
         setScale: (state: State, payload: ScaleId) => ({
             ...state,
             scale: payload,
+        }),
+
+        verticalView: (state: State, payload: boolean) => ({
+            ...state,
+            verticalView: payload,
         }),
     };
 

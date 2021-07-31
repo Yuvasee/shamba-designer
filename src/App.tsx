@@ -10,6 +10,8 @@ import { PatternColor } from "./components/PatternColor";
 import { Preloader } from "./components/Preloader";
 import { Scale } from "./components/Scale";
 import { State, Action } from "./state/types";
+import { useEffect } from "react";
+import { Rotate } from "./components/Rotate";
 
 const AppDiv = styled.div`
     overflow: visible;
@@ -25,30 +27,43 @@ export const StateContext = createContext<[State, Dispatch<Action>]>([] as any);
 export const App = () => {
     const [state, dispatch] = useReducer(reducer, initState);
 
+    useEffect(() => {
+        const handleResize = () => {
+            dispatch({
+                type: "verticalView",
+                payload: isMobile() && window.innerHeight > window.innerWidth,
+            });
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    });
+
+    const { verticalView } = state;
+
     return (
         <StateContext.Provider value={[state, dispatch]}>
             <Preloader />
 
-            <AppDiv>
-                <AppInnerDiv style={{ marginLeft: "20px" }}>
-                    <Scale />
-                    <Color />
-                </AppInnerDiv>
+            {verticalView ? (
+                <Rotate />
+            ) : (
+                <AppDiv>
+                    <AppInnerDiv style={{ marginLeft: "20px" }}>
+                        <Scale />
+                        <Color />
+                    </AppInnerDiv>
 
-                <AppInnerDiv style={{ alignSelf: "center" }}>
-                    <Drum
-                        scale={state.scale}
-                        color={state.color}
-                        pattern={state.pattern}
-                        patternColor={state.patternColor}
-                    />
-                </AppInnerDiv>
+                    <AppInnerDiv style={{ alignSelf: "center" }}>
+                        <Drum />
+                    </AppInnerDiv>
 
-                <AppInnerDiv>
-                    <Pattern />
-                    <PatternColor />
-                </AppInnerDiv>
-            </AppDiv>
+                    <AppInnerDiv>
+                        <Pattern />
+                        <PatternColor />
+                    </AppInnerDiv>
+                </AppDiv>
+            )}
         </StateContext.Provider>
     );
 };

@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
-import { State } from "../state/types";
+
+import { StateContext } from "../App";
 
 type DrumDivProps = {
     sprite: string;
@@ -18,7 +19,11 @@ const DrumDiv = styled.div<DrumDivProps>`
     margin: 20px;
 `;
 
-export const Drum: FC<Omit<State, "mainState">> = ({ scale, pattern, color, patternColor }) => {
+export const Drum = () => {
+    const [state] = useContext(StateContext);
+    const { scale, pattern, color, patternColor } = state;
+
     const sprite = `${color}_${String(pattern + 1).padStart(2, "0")}`;
+
     return <DrumDiv sprite={sprite} bgShift={patternColor} />;
 };
