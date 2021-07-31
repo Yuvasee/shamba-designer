@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import styled from "styled-components";
+
 import { StateContext } from "../App";
+import { PropertyHeader } from "../elements/PropertyHeader";
 
 const PATTERN_SIZE_PX = 40;
 
 const PatternContainerDiv = styled.div``;
-
-const PropertyHeaderDiv = styled.div``;
 
 const PatternSelectorDiv = styled.div`
     display: flex;
@@ -30,7 +30,7 @@ export const Pattern = () => {
 
     return (
         <PatternContainerDiv>
-            <PropertyHeaderDiv>Pattern</PropertyHeaderDiv>
+            <PropertyHeader>Pattern</PropertyHeader>
 
             <PatternSelectorDiv>
                 {Array.from({ length: 16 }).map((_, i) => {

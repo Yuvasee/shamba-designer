@@ -1,4 +1,4 @@
-import { Scale, ScaleId } from "./types";
+import { DrumColor, Scale, ScaleId } from "./types";
 
 export const scales: Record<ScaleId, Scale> = {
     akebonoC: {
@@ -72,3 +72,5 @@ export const patternColors = [
     "#ea00ff",
     "#000",
 ];
+
+export const drumColors: DrumColor[] = ["Gray", "Black", "White"];

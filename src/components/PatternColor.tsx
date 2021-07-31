@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { StateContext } from "../App";
+import { PropertyHeader } from "../elements/PropertyHeader";
 import { patternColors } from "../state/data";
 
 type PatternColorDivProps = {
@@ -11,8 +12,6 @@ type PatternColorDivProps = {
 const PATTERN_COLOR_SIZE_PX = 24;
 
 const PatternColorContainerDiv = styled.div``;
-
-const PropertyHeaderDiv = styled.div``;
 
 const PatternColorSelectorDiv = styled.div`
     display: flex;
@@ -40,13 +39,13 @@ export const PatternColor = () => {
 
     return (
         <PatternColorContainerDiv>
-            <PropertyHeaderDiv>Pattern color</PropertyHeaderDiv>
+            <PropertyHeader>Pattern color</PropertyHeader>
 
             <PatternColorSelectorDiv>
                 {Array.from({ length: 8 }).map((_, i) => {
                     const disabled =
-                        (state.color === "white" && i === 0) ||
-                        (state.color === "black" && i === 7);
+                        (state.color === "White" && i === 0) ||
+                        (state.color === "Black" && i === 7);
 
                     return (
                         <PatternColorDiv

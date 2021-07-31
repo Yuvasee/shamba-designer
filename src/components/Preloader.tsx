@@ -7,7 +7,7 @@ const PreloaderDiv = styled.div`
 `;
 
 export const Preloader = () => {
-    const colors: DrumColor[] = ["gray", "white", "black"];
+    const colors: DrumColor[] = ["Gray", "White", "Black"];
     const patterns = Array.from({ length: 16 });
 
     return (

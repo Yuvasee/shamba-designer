@@ -4,7 +4,7 @@ import { State, Action, ActionMap, Pattern, PatternColorId } from "./types";
 export const initState: State = {
     mainState: "splash",
     scale: "akebonoC",
-    color: "gray",
+    color: "Gray",
     pattern: 0,
     patternColor: 0,
 };

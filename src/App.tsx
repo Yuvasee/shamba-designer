@@ -1,11 +1,13 @@
 import { createContext, Dispatch, useReducer } from "react";
 import styled from "styled-components";
 
+import { Color } from "./components/Color";
 import { Drum } from "./components/Drum";
+import { initState, reducer } from "./state/reducer";
 import { Pattern } from "./components/Pattern";
 import { PatternColor } from "./components/PatternColor";
 import { Preloader } from "./components/Preloader";
-import { initState, reducer } from "./state/reducer";
+import { Scale } from "./components/Scale";
 import { State, Action } from "./state/types";
 
 const AppDiv = styled.div`
@@ -23,23 +25,26 @@ export const App = () => {
     const [state, dispatch] = useReducer(reducer, initState);
 
     return (
-        <>
+        <StateContext.Provider value={[state, dispatch]}>
             <Preloader />
+
             <AppDiv>
-                <StateContext.Provider value={[state, dispatch]}>
-                    <Drum
-                        scale={state.scale}
-                        color={state.color}
-                        pattern={state.pattern}
-                        patternColor={state.patternColor}
-                    />
+                <Drum
+                    scale={state.scale}
+                    color={state.color}
+                    pattern={state.pattern}
+                    patternColor={state.patternColor}
+                />
 
-                    <Pattern />
+                <Pattern />
 
-                    <PatternColor />
-                </StateContext.Provider>
+                <PatternColor />
+
+                <Color />
+
+                <Scale />
             </AppDiv>
-        </>
+        </StateContext.Provider>
     );
 };
 
