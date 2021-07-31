@@ -14,6 +14,8 @@ import { useEffect } from "react";
 import { Rotate } from "./components/Rotate";
 
 const AppDiv = styled.div`
+    position: fixed;
+    height: 100%;
     overflow: visible;
     display: flex;
     align-items: center;
