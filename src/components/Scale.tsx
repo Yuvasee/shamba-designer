@@ -43,7 +43,7 @@ export const Scale = () => {
             <PropertyHeader>Scale</PropertyHeader>
 
             {scalesList.map((scale) => (
-                <ScaleItemDiv>
+                <ScaleItemDiv key={scale.id}>
                     <span onClick={() => dispatch({ type: "setScale", payload: scale.id })}>
                         {scale.title}
                     </span>

@@ -1,4 +1,6 @@
+import { Fragment } from "react";
 import styled from "styled-components";
+
 import { DrumColor } from "../state/types";
 
 const PreloaderDiv = styled.div`
@@ -15,6 +17,7 @@ export const Preloader = () => {
             {patterns.map((_, i) =>
                 colors.map((color) => (
                     <img
+                        key={i + color}
                         src={`/assets/i/sprite/${color}_${String(i + 1).padStart(2, "0")}.png`}
                         alt=""
                     />
@@ -25,10 +28,10 @@ export const Preloader = () => {
                 const fileName = String(i + 1).padStart(2, "0");
 
                 return (
-                    <>
+                    <Fragment key={i}>
                         <img src={`/assets/i/patterns/${fileName}.png`} alt="" />
                         <img src={`/assets/i/patterns/${fileName}G.png`} alt="" />
-                    </>
+                    </Fragment>
                 );
             })}
         </PreloaderDiv>
