@@ -17,6 +17,7 @@ const DrumDiv = styled.div<DrumDivProps>`
     background-image: url("/assets/i/sprite/${(p) => p.sprite}.png");
     background-size: ${(p) => p.bgMultiply * DRUM_SIZE_PX}px;
     background-position-x: -${(p) => p.bgShift * DRUM_SIZE_PX}px;
+    background-repeat: no-repeat;
     margin: 20px;
 `;
 
