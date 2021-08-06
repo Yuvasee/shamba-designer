@@ -10,6 +10,10 @@ const ColorDiv = styled.div`
     color: ${MENU_ITEM_COLOR};
     font-size: 15px;
     font-family: ${FONT_FAMILY};
+
+    @media (max-height: 300px) {
+        font-size: 11px;
+    }
 `;
 
 const ColorItemDiv = styled.div`
@@ -18,6 +22,10 @@ const ColorItemDiv = styled.div`
 
     &:not(:last-child) {
         margin-bottom: 10px;
+
+        @media (max-height: 300px) {
+            margin-bottom: 5px;
+        }
     }
 
     span {

@@ -16,10 +16,12 @@ import { Rotate } from "./components/Rotate";
 const AppDiv = styled.div`
     position: fixed;
     height: 100%;
+    width: 100%;
     overflow: visible;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    max-width: 800px;
 `;
 
 const AppInnerDiv = styled.div``;
@@ -51,7 +53,7 @@ export const App = () => {
                 <Rotate />
             ) : (
                 <AppDiv>
-                    <AppInnerDiv style={{ marginLeft: "20px" }}>
+                    <AppInnerDiv style={{ marginLeft: "10px" }}>
                         <Scale />
                         <Color />
                     </AppInnerDiv>
@@ -60,7 +62,7 @@ export const App = () => {
                         <Drum />
                     </AppInnerDiv>
 
-                    <AppInnerDiv>
+                    <AppInnerDiv style={{ marginRight: "10px" }}>
                         <Pattern />
                         <PatternColor />
                     </AppInnerDiv>

@@ -11,6 +11,11 @@ const ScaleDiv = styled.div`
     font-size: 12px;
     font-family: ${FONT_FAMILY};
     margin-bottom: 30px;
+
+    @media (max-height: 300px) {
+        font-size: 11px;
+        margin-bottom: 15px;
+    }
 `;
 
 const ScaleItemDiv = styled.div`

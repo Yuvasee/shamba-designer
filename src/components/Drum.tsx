@@ -9,7 +9,7 @@ type DrumDivProps = {
     bgMultiply: number;
 };
 
-const DRUM_SIZE_PX = 204;
+const DRUM_SIZE_PX = 250;
 
 const DrumDiv = styled.div<DrumDivProps>`
     width: ${DRUM_SIZE_PX}px;

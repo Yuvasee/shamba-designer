@@ -8,6 +8,11 @@ const PropertyHeaderDiv = styled.div`
     font-size: 15px;
     font-family: ${FONT_FAMILY};
     margin-bottom: 10px;
+
+    @media (max-height: 300px) {
+        font-size: 13px;
+        margin-bottom: 7px;
+    }
 `;
 
 export const PropertyHeader: FC<PropsWithChildren<{}>> = ({ children }) => {
