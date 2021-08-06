@@ -24,16 +24,23 @@ const PatternSelectorDiv = styled.div`
     flex-wrap: wrap;
 `;
 
-const PatternDiv = styled.div<{ fileName: string }>`
+type PatternDivProps = {
+    fileName: string;
+    selected?: boolean;
+};
+
+const PatternDiv = styled.div<PatternDivProps>`
     width: ${PATTERN_SIZE_PX}px;
     height: ${PATTERN_SIZE_PX}px;
     background-image: url("/assets/i/patterns/${(p) => p.fileName}.png");
     background-size: cover;
     margin: ${MARGIN_PX}px;
-    cursor: pointer;
+    cursor: ${(p) => (p.selected ? "default" : "pointer")};
+    position: relative;
 
     &:hover {
-        background-image: url("/assets/i/patterns/${(p) => p.fileName}G.png");
+        background-image: url("/assets/i/patterns/${(p) =>
+            p.fileName + (p.selected ? "" : "G")}.png");
     }
 
     @media (max-height: 300px) {
@@ -41,10 +48,22 @@ const PatternDiv = styled.div<{ fileName: string }>`
         height: ${PATTERN_SIZE_XS_PX}px;
         margin: ${MARGIN_XS_PX}px;
     }
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 50%;
+        box-shadow: ${(p) => (p.selected ? "0 0 10px #fff" : "none")};
+    }
 `;
 
 export const Pattern = () => {
-    const [, dispatch] = useContext(StateContext);
+    const [state, dispatch] = useContext(StateContext);
+    const { pattern } = state;
 
     return (
         <PatternContainerDiv>
@@ -59,6 +78,7 @@ export const Pattern = () => {
                             key={i}
                             fileName={fileName}
                             onClick={() => dispatch({ type: "setPattern", payload: i })}
+                            selected={pattern === i}
                         />
                     );
                 })}

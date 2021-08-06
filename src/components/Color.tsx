@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 import { StateContext } from "../App";
-import { FONT_FAMILY, MENU_ITEM_COLOR } from "../constants";
+import { FONT_FAMILY, MENU_ITEM_COLOR, MENU_ITEM_SELECTED_COLOR } from "../constants";
 import { PropertyHeader } from "../elements/PropertyHeader";
 import { drumColors } from "../state/data";
 
@@ -16,8 +16,11 @@ const ColorDiv = styled.div`
     }
 `;
 
-const ColorItemDiv = styled.div`
-    cursor: pointer;
+type ColorItemDivProps = {
+    selected?: boolean;
+};
+const ColorItemDiv = styled.div<ColorItemDivProps>`
+    cursor: ${(p) => (p.selected ? "default" : "pointer")};
     margin-left: -10px;
 
     &:not(:last-child) {
@@ -31,22 +34,25 @@ const ColorItemDiv = styled.div`
     span {
         padding: 0 10px;
         border-radius: 8px;
+        color: ${(p) => (p.selected ? MENU_ITEM_SELECTED_COLOR : "inherit")};
+        text-shadow: ${(p) => (p.selected ? "0 0 5px #aaa" : "none")};
 
         &:hover {
-            background-color: #333;
+            background-color: ${(p) => (p.selected ? "none" : "#333")};
         }
     }
 `;
 
 export const Color = () => {
-    const [, dispatch] = useContext(StateContext);
+    const [state, dispatch] = useContext(StateContext);
+    const { color: selected } = state;
 
     return (
         <ColorDiv>
             <PropertyHeader>Drum Color</PropertyHeader>
 
             {drumColors.map((color) => (
-                <ColorItemDiv key={color}>
+                <ColorItemDiv key={color} selected={color === selected}>
                     <span onClick={() => dispatch({ type: "setColor", payload: color })}>
                         {color}
                     </span>

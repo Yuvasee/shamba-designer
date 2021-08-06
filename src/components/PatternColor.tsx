@@ -7,6 +7,7 @@ import { patternColors } from "../state/data";
 type PatternColorDivProps = {
     color: string;
     border: boolean;
+    selected?: boolean;
 };
 
 const PATTERN_COLOR_SIZE_PX = 24;
@@ -25,9 +26,21 @@ const PatternColorDiv = styled.div<PatternColorDivProps>`
     height: ${PATTERN_COLOR_SIZE_PX}px;
     background-color: ${(p) => p.color};
     margin: 3px;
-    cursor: pointer;
+    cursor: ${(p) => (p.selected ? "default" : "pointer")};
     border: ${(p) => (p.border ? "thin solid white" : "none")};
     border-radius: 50%;
+    position: relative;
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 50%;
+        box-shadow: ${(p) => (p.selected ? "0 0 7px #fff" : "none")};
+    }
 `;
 
 const CircleSvg = () => (
@@ -58,6 +71,7 @@ export const PatternColor = () => {
                             onClick={() =>
                                 !disabled && dispatch({ type: "setPatternColor", payload: i })
                             }
+                            selected={state.patternColor === i}
                         >
                             {disabled && <CircleSvg />}
                         </PatternColorDiv>
