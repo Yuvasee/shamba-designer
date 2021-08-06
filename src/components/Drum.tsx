@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 import { StateContext } from "../App";
-import { patternColors, scales } from "../state/data";
+import { scales } from "../state/data";
 
 type DrumDivProps = {
     sprite: string;
@@ -31,7 +31,7 @@ export const Drum = () => {
     const [state] = useContext(StateContext);
     const { scale, pattern, color, patternColor, sound } = state;
 
-    const sprite = `${color}_${String(pattern + 1).padStart(2, "0")}`;
+    const sprite = `${color.toLowerCase()}_${String(pattern + 1).padStart(2, "0")}`;
 
     const handleTapNote = (n: number) => {
         const note = scales[scale].notes[n];
