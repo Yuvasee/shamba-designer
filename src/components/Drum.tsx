@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 import { StateContext } from "../App";
-import { scales } from "../state/data";
+import { patternColors, scales } from "../state/data";
 
 type DrumDivProps = {
     sprite: string;
@@ -38,8 +38,10 @@ export const Drum = () => {
         sound.playNote(note);
     };
 
+    const bgShift = color === "White" && patternColor === 7 ? 0 : patternColor;
+
     return (
-        <DrumDiv sprite={sprite} bgShift={patternColor} bgMultiply={color === "Gray" ? 8 : 7}>
+        <DrumDiv sprite={sprite} bgShift={bgShift} bgMultiply={color === "Gray" ? 8 : 7}>
             <svg viewBox="0 0 250 250">
                 <path
                     onClick={() => handleTapNote(0)}

@@ -28,6 +28,12 @@ export const reducer: Reducer<State, Action> = (state, action) => {
         setColor: (state: State, payload: DrumColor) => ({
             ...state,
             color: payload,
+            patternColor:
+                payload === "White" && state.patternColor === 0
+                    ? 7
+                    : payload === "Black" && state.patternColor === 7
+                    ? 0
+                    : state.patternColor,
         }),
 
         setScale: (state: State, payload: ScaleId) => ({
