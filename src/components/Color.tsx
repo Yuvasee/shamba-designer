@@ -11,7 +11,7 @@ const ColorDiv = styled.div`
     font-size: 15px;
     font-family: ${FONT_FAMILY};
 
-    @media (max-height: 300px) {
+    @media screen and (max-height: 18rem) {
         font-size: 11px;
     }
 `;
@@ -26,7 +26,7 @@ const ColorItemDiv = styled.div<ColorItemDivProps>`
     &:not(:last-child) {
         margin-bottom: 10px;
 
-        @media (max-height: 300px) {
+        @media screen and (max-height: 18rem) {
             margin-bottom: 5px;
         }
     }

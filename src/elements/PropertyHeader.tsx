@@ -9,7 +9,7 @@ const PropertyHeaderDiv = styled.div`
     font-family: ${FONT_FAMILY};
     margin-bottom: 10px;
 
-    @media (max-height: 300px) {
+    @media screen and (max-height: 18rem) {
         font-size: 13px;
         margin-bottom: 7px;
     }

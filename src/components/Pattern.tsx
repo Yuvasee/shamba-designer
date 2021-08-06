@@ -13,7 +13,7 @@ const PatternContainerDiv = styled.div`
     margin-bottom: 24px;
     max-width: ${PATTERN_SIZE_PX * 4 + MARGIN_PX * 8 + 1}px;
 
-    @media screen and (max-height: 300px) {
+    @media screen and (max-height: 18rem) {
         max-width: ${PATTERN_SIZE_XS_PX * 4 + MARGIN_XS_PX * 8 + 1}px;
         margin-bottom: 15px;
     }
@@ -43,7 +43,7 @@ const PatternDiv = styled.div<PatternDivProps>`
             p.fileName + (p.selected ? "" : "G")}.png");
     }
 
-    @media (max-height: 300px) {
+    @media screen and (max-height: 18rem) {
         width: ${PATTERN_SIZE_XS_PX}px;
         height: ${PATTERN_SIZE_XS_PX}px;
         margin: ${MARGIN_XS_PX}px;
