@@ -8,7 +8,6 @@ export const initState: State = {
     mainState: "splash",
     scale: "akebonoC",
     color: "gray",
-    pattern: 0,
     patternColor: 0,
     sound: sound,
 };

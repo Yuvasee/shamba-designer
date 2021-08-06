@@ -18,6 +18,10 @@ export const Preloader = () => {
 
     return (
         <PreloaderDiv>
+            {colors.map((color) => (
+                <img key={color} src={`/assets/i/sprite/${color}.png`} alt="" />
+            ))}
+
             {patterns.map((_, i) =>
                 colors.map((color) => (
                     <img

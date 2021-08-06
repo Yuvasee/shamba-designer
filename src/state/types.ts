@@ -15,7 +15,7 @@ export type State = {
     mainState: "splash" | "main";
     scale: ScaleId;
     color: DrumColor;
-    pattern: Pattern;
+    pattern?: Pattern;
     patternColor: PatternColorId;
     sound: Sound;
 };

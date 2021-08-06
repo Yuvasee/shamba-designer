@@ -2,7 +2,8 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 import { StateContext } from "../App";
-import { scales } from "../state/data";
+import { drumColors, scales } from "../state/data";
+import { DrumColor } from "../state/types";
 
 type DrumDivProps = {
     sprite: string;
@@ -11,13 +12,16 @@ type DrumDivProps = {
 };
 
 const DRUM_SIZE_PX = 250;
+const DRUM_SIZE_XS_PX = 210;
 
 const DrumDiv = styled.div<DrumDivProps>`
     width: ${DRUM_SIZE_PX}px;
     height: ${DRUM_SIZE_PX}px;
     background-image: url("/assets/i/sprite/${(p) => p.sprite}.png");
-    background-size: ${(p) => p.bgMultiply * DRUM_SIZE_PX}px;
-    background-position-x: -${(p) => p.bgShift * DRUM_SIZE_PX}px;
+    background-size: ${(p) =>
+        (drumColors.includes(p.sprite as DrumColor) ? 1 : p.bgMultiply) * DRUM_SIZE_PX}px;
+    background-position-x: ${(p) =>
+        (drumColors.includes(p.sprite as DrumColor) ? 0 : -p.bgShift) * DRUM_SIZE_PX}px;
     background-repeat: no-repeat;
     margin: 20px;
 
@@ -25,13 +29,23 @@ const DrumDiv = styled.div<DrumDivProps>`
         cursor: pointer;
         opacity: 0;
     }
+
+    @media screen and (max-height: 18rem) {
+        width: ${DRUM_SIZE_XS_PX}px;
+        height: ${DRUM_SIZE_XS_PX}px;
+        background-size: ${(p) =>
+            (drumColors.includes(p.sprite as DrumColor) ? 1 : p.bgMultiply) * DRUM_SIZE_XS_PX}px;
+        background-position-x: ${(p) =>
+            (drumColors.includes(p.sprite as DrumColor) ? 0 : -p.bgShift) * DRUM_SIZE_XS_PX}px;
+        margin: 10px 15px;
+    }
 `;
 
 export const Drum = () => {
     const [state] = useContext(StateContext);
     const { scale, pattern, color, patternColor, sound } = state;
 
-    const sprite = `${color}_${String(pattern + 1).padStart(2, "0")}`;
+    const sprite = pattern ? `${color}_${String(pattern + 1).padStart(2, "0")}` : color;
 
     const handleTapNote = (n: number) => {
         const note = scales[scale].notes[n];

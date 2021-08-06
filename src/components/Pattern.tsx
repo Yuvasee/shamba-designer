@@ -35,7 +35,7 @@ const PatternDiv = styled.div<PatternDivProps>`
     background-image: url("/assets/i/patterns/${(p) => p.fileName}.png");
     background-size: cover;
     margin: ${MARGIN_PX}px;
-    cursor: ${(p) => (p.selected ? "default" : "pointer")};
+    cursor: pointer;
     position: relative;
 
     &:hover {
@@ -72,13 +72,16 @@ export const Pattern = () => {
             <PatternSelectorDiv>
                 {Array.from({ length: 16 }).map((_, i) => {
                     const fileName = String(i + 1).padStart(2, "0");
+                    const selected = pattern === i;
 
                     return (
                         <PatternDiv
                             key={i}
                             fileName={fileName}
-                            onClick={() => dispatch({ type: "setPattern", payload: i })}
-                            selected={pattern === i}
+                            onClick={() =>
+                                dispatch({ type: "setPattern", payload: selected ? undefined : i })
+                            }
+                            selected={selected}
                         />
                     );
                 })}

@@ -12,6 +12,7 @@ import { Scale } from "./components/Scale";
 import { State, Action } from "./state/types";
 import { useEffect } from "react";
 import { Rotate } from "./components/Rotate";
+import { CurrentScale } from "./components/CurrentScale";
 
 const AppDiv = styled.div`
     position: fixed;
@@ -59,6 +60,7 @@ export const App = () => {
                     </AppInnerDiv>
 
                     <AppInnerDiv style={{ alignSelf: "center" }}>
+                        <CurrentScale />
                         <Drum />
                     </AppInnerDiv>
 
