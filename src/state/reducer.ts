@@ -1,4 +1,6 @@
 import { Reducer } from "react";
+
+import sound from "./sound";
 import { State, Action, ActionMap, Pattern, PatternColorId, DrumColor, ScaleId } from "./types";
 
 export const initState: State = {
@@ -8,6 +10,7 @@ export const initState: State = {
     color: "Gray",
     pattern: 0,
     patternColor: 0,
+    sound: sound,
 };
 
 export const reducer: Reducer<State, Action> = (state, action) => {

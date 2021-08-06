@@ -1,4 +1,4 @@
-import { DrumColor, Scale, ScaleId } from "./types";
+import { DrumColor, NoteId, Scale, ScaleId } from "./types";
 
 export const scales: Record<ScaleId, Scale> = {
     akebonoC: {
@@ -74,3 +74,24 @@ export const patternColors = [
 ];
 
 export const drumColors: DrumColor[] = ["Gray", "Black", "White"];
+
+export const allNotes: NoteId[] = [
+    "C4",
+    "D4",
+    "D#4",
+    "G4",
+    "G#4",
+    "C5",
+    "D5",
+    "D#5",
+    "E4",
+    "F4",
+    "A4",
+    "A#4",
+    "E5",
+    "F5",
+    "G5",
+    "F#4",
+    "B4",
+    "F#5",
+];
