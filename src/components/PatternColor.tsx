@@ -60,8 +60,8 @@ export const PatternColor = () => {
             <PatternColorSelectorDiv>
                 {Array.from({ length: 8 }).map((_, i) => {
                     const disabled =
-                        (state.color === "White" && i === 0) ||
-                        (state.color === "Black" && i === 7);
+                        (state.color === "white" && i === 0) ||
+                        (state.color === "black" && i === 7);
 
                     return (
                         <PatternColorDiv

@@ -5,11 +5,15 @@ import { DrumColor } from "../state/types";
 
 const PreloaderDiv = styled.div`
     position: absolute;
-    visibility: hidden;
+
+    img {
+        height: 10px;
+        visibility: hidden;
+    }
 `;
 
 export const Preloader = () => {
-    const colors: DrumColor[] = ["Gray", "White", "Black"];
+    const colors: DrumColor[] = ["gray", "white", "black"];
     const patterns = Array.from({ length: 16 });
 
     return (

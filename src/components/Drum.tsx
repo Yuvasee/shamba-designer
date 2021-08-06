@@ -31,17 +31,17 @@ export const Drum = () => {
     const [state] = useContext(StateContext);
     const { scale, pattern, color, patternColor, sound } = state;
 
-    const sprite = `${color.toLowerCase()}_${String(pattern + 1).padStart(2, "0")}`;
+    const sprite = `${color}_${String(pattern + 1).padStart(2, "0")}`;
 
     const handleTapNote = (n: number) => {
         const note = scales[scale].notes[n];
         sound.playNote(note);
     };
 
-    const bgShift = color === "White" && patternColor === 7 ? 0 : patternColor;
+    const bgShift = color === "white" && patternColor === 7 ? 0 : patternColor;
 
     return (
-        <DrumDiv sprite={sprite} bgShift={bgShift} bgMultiply={color === "Gray" ? 8 : 7}>
+        <DrumDiv sprite={sprite} bgShift={bgShift} bgMultiply={color === "gray" ? 8 : 7}>
             <svg viewBox="0 0 250 250">
                 <path
                     onClick={() => handleTapNote(0)}

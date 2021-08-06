@@ -7,7 +7,7 @@ export const initState: State = {
     verticalView: false,
     mainState: "splash",
     scale: "akebonoC",
-    color: "Gray",
+    color: "gray",
     pattern: 0,
     patternColor: 0,
     sound: sound,
@@ -29,9 +29,9 @@ export const reducer: Reducer<State, Action> = (state, action) => {
             ...state,
             color: payload,
             patternColor:
-                payload === "White" && state.patternColor === 0
+                payload === "white" && state.patternColor === 0
                     ? 7
-                    : payload === "Black" && state.patternColor === 7
+                    : payload === "black" && state.patternColor === 7
                     ? 0
                     : state.patternColor,
         }),

@@ -73,7 +73,7 @@ export const patternColors = [
     "#000",
 ];
 
-export const drumColors: DrumColor[] = ["Gray", "Black", "White"];
+export const drumColors: DrumColor[] = ["gray", "black", "white"];
 
 export const allNotes: NoteId[] = [
     "C4",

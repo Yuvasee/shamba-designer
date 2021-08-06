@@ -1,6 +1,6 @@
 import { Sound } from "./sound";
 
-export type DrumColor = "Gray" | "Black" | "White";
+export type DrumColor = "gray" | "black" | "white";
 
 export type Pattern = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
