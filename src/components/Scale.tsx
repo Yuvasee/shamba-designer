@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 
 import { StateContext } from "../App";
@@ -22,6 +22,8 @@ const ScaleDiv = styled.div`
     font-size: 12px;
     font-family: ${FONT_FAMILY};
     margin-bottom: 30px;
+    position: relative;
+    z-index: 100;
 
     @media screen and (max-height: 18rem) {
         font-size: 11px;
@@ -61,9 +63,18 @@ export const Scale = () => {
 
     const scalesList = Object.values(scales);
 
+    const headerRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!headerRef.current || state.scaleHeaderRect) return;
+        dispatch({
+            type: "setScaleHeaderRect",
+            payload: headerRef.current.getBoundingClientRect(),
+        });
+    }, [dispatch, state.scaleHeaderRect]);
+
     return (
         <ScaleDiv>
-            <PropertyHeader>Scale</PropertyHeader>
+            <PropertyHeader ref={headerRef}>Scale</PropertyHeader>
 
             {scalesList.map((scale) => (
                 <ScaleItemDiv key={scale.id} selected={scale.id === selected}>

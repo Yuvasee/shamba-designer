@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 
 import { StateContext } from "../App";
@@ -59,9 +59,18 @@ export const Color = () => {
     const [state, dispatch] = useContext(StateContext);
     const { color: selected } = state;
 
+    const headerRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!headerRef.current || state.colorHeaderRect) return;
+        dispatch({
+            type: "setColorHeaderRect",
+            payload: headerRef.current.getBoundingClientRect(),
+        });
+    }, [dispatch, state.colorHeaderRect]);
+
     return (
         <ColorDiv>
-            <PropertyHeader>Drum Color</PropertyHeader>
+            <PropertyHeader ref={headerRef}>Drum Color</PropertyHeader>
 
             {drumColors.map((color) => (
                 <ColorItemDiv key={color} selected={color === selected}>

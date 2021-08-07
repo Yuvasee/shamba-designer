@@ -1,20 +1,21 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 
 import { StateContext } from "../App";
+import {
+    PATTERN_SIZE_PX,
+    PATTERN_MARGIN_PX,
+    PATTERN_SIZE_XS_PX,
+    PATTERN_MARGIN_XS_PX,
+} from "../constants";
 import { PropertyHeader } from "../elements/PropertyHeader";
-
-const PATTERN_SIZE_PX = 40;
-const PATTERN_SIZE_XS_PX = 30;
-const MARGIN_PX = 5;
-const MARGIN_XS_PX = 3;
 
 const PatternContainerDiv = styled.div`
     margin-bottom: 24px;
-    max-width: ${PATTERN_SIZE_PX * 4 + MARGIN_PX * 8 + 1}px;
+    max-width: ${PATTERN_SIZE_PX * 4 + PATTERN_MARGIN_PX * 8 + 1}px;
 
     @media screen and (max-height: 18rem) {
-        max-width: ${PATTERN_SIZE_XS_PX * 4 + MARGIN_XS_PX * 8 + 1}px;
+        max-width: ${PATTERN_SIZE_XS_PX * 4 + PATTERN_MARGIN_XS_PX * 8 + 1}px;
         margin-bottom: 15px;
     }
 `;
@@ -45,9 +46,10 @@ const PatternDiv = styled.div<PatternDivProps>`
     height: ${PATTERN_SIZE_PX}px;
     background-image: url("/assets/i/patterns/${(p) => p.fileName}.png");
     background-size: cover;
-    margin: ${MARGIN_PX}px;
+    margin: ${PATTERN_MARGIN_PX}px;
     cursor: pointer;
     position: relative;
+    z-index: 100;
     animation: ${initialAnimation} 1.5s ease;
 
     &:hover {
@@ -58,7 +60,7 @@ const PatternDiv = styled.div<PatternDivProps>`
     @media screen and (max-height: 18rem) {
         width: ${PATTERN_SIZE_XS_PX}px;
         height: ${PATTERN_SIZE_XS_PX}px;
-        margin: ${MARGIN_XS_PX}px;
+        margin: ${PATTERN_MARGIN_XS_PX}px;
     }
 
     &:after {
@@ -77,9 +79,20 @@ export const Pattern = () => {
     const [state, dispatch] = useContext(StateContext);
     const { pattern } = state;
 
+    const headerRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!headerRef.current || state.patternHeaderRect) return;
+        dispatch({
+            type: "setPatternHeaderRect",
+            payload: headerRef.current.getBoundingClientRect(),
+        });
+    }, [dispatch, state.patternHeaderRect]);
+
     return (
         <PatternContainerDiv>
-            <PropertyHeader>Pattern</PropertyHeader>
+            <PropertyHeader ref={headerRef} leftMargin>
+                Pattern
+            </PropertyHeader>
 
             <PatternSelectorDiv>
                 {Array.from({ length: 16 }).map((_, i) => {

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { StateContext } from "../App";
 import { PropertyHeader } from "../elements/PropertyHeader";
@@ -65,9 +65,20 @@ const CircleSvg = () => (
 export const PatternColor = () => {
     const [state, dispatch] = useContext(StateContext);
 
+    const headerRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!headerRef.current || state.patternColorHeaderRect) return;
+        dispatch({
+            type: "setPatternColorHeaderRect",
+            payload: headerRef.current.getBoundingClientRect(),
+        });
+    }, [dispatch, state.patternColorHeaderRect]);
+
     return (
         <PatternColorContainerDiv>
-            <PropertyHeader>Pattern color</PropertyHeader>
+            <PropertyHeader ref={headerRef} leftMargin>
+                Pattern color
+            </PropertyHeader>
 
             <PatternColorSelectorDiv>
                 {Array.from({ length: 8 }).map((_, i) => {

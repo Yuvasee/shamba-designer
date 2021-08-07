@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { StateContext } from "../App";
@@ -40,7 +40,7 @@ const DrumDiv = styled.div<DrumDivProps>`
 `;
 
 export const Drum = () => {
-    const [state] = useContext(StateContext);
+    const [state, dispatch] = useContext(StateContext);
     const { scale, pattern, color, patternColor, sound } = state;
 
     const sprite =
@@ -53,8 +53,22 @@ export const Drum = () => {
 
     const bgShift = color === "white" && patternColor === 7 ? 0 : patternColor;
 
+    const drumRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!drumRef.current || state.drumRect) return;
+        dispatch({
+            type: "setDrumRect",
+            payload: drumRef.current.getBoundingClientRect(),
+        });
+    }, [dispatch, state.drumRect]);
+
     return (
-        <DrumDiv sprite={sprite} bgShift={bgShift} bgMultiply={color === "gray" ? 8 : 7}>
+        <DrumDiv
+            sprite={sprite}
+            bgShift={bgShift}
+            bgMultiply={color === "gray" ? 8 : 7}
+            ref={drumRef}
+        >
             <svg viewBox="0 0 250 250">
                 <path
                     onClick={() => handleTapNote(4)}

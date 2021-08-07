@@ -1,3 +1,4 @@
+import isMobile from "is-mobile";
 import { Reducer } from "react";
 
 import { Sound } from "./sound";
@@ -11,6 +12,7 @@ export const initState: State = {
     scale: "akebonoC",
     color: "gray",
     patternColor: 0,
+    viewHeight: window.innerHeight,
 };
 
 export const reducer: Reducer<State, Action> = (state, action) => {
@@ -41,9 +43,20 @@ export const reducer: Reducer<State, Action> = (state, action) => {
             scale: payload,
         }),
 
-        verticalView: (state: State, payload: boolean) => ({
+        resize: (state: State) => ({
             ...state,
-            verticalView: payload,
+            verticalView: isMobile() && window.innerHeight > window.innerWidth,
+            ...(state.viewHeight === window.innerHeight
+                ? {}
+                : {
+                      viewHeight: window.innerHeight,
+                      fixedWrapperRect: undefined,
+                      drumRect: undefined,
+                      scaleHeaderRect: undefined,
+                      colorHeaderRect: undefined,
+                      patternHeaderRect: undefined,
+                      patternColorHeaderRect: undefined,
+                  }),
         }),
 
         setLoaded: (state: State) => ({
@@ -55,6 +68,36 @@ export const reducer: Reducer<State, Action> = (state, action) => {
             ...state,
             splashLoaded: true,
             sound: new Sound(),
+        }),
+
+        setFixedWrapperRect: (state: State, payload: DOMRect) => ({
+            ...state,
+            fixedWrapperRect: payload,
+        }),
+
+        setDrumRect: (state: State, payload: DOMRect) => ({
+            ...state,
+            drumRect: payload,
+        }),
+
+        setScaleHeaderRect: (state: State, payload: DOMRect) => ({
+            ...state,
+            scaleHeaderRect: payload,
+        }),
+
+        setColorHeaderRect: (state: State, payload: DOMRect) => ({
+            ...state,
+            colorHeaderRect: payload,
+        }),
+
+        setPatternHeaderRect: (state: State, payload: DOMRect) => ({
+            ...state,
+            patternHeaderRect: payload,
+        }),
+
+        setPatternColorHeaderRect: (state: State, payload: DOMRect) => ({
+            ...state,
+            patternColorHeaderRect: payload,
         }),
     };
 

@@ -20,6 +20,13 @@ export type State = {
     pattern?: Pattern;
     patternColor: PatternColorId;
     sound?: Sound;
+    fixedWrapperRect?: DOMRect;
+    drumRect?: DOMRect;
+    scaleHeaderRect?: DOMRect;
+    colorHeaderRect?: DOMRect;
+    patternHeaderRect?: DOMRect;
+    patternColorHeaderRect?: DOMRect;
+    viewHeight: number;
 };
 
 export type ActionType =
@@ -27,9 +34,15 @@ export type ActionType =
     | "setPatternColor"
     | "setColor"
     | "setScale"
-    | "verticalView"
+    | "resize"
     | "setLoaded"
-    | "setSplashLoaded";
+    | "setSplashLoaded"
+    | "setFixedWrapperRect"
+    | "setDrumRect"
+    | "setScaleHeaderRect"
+    | "setColorHeaderRect"
+    | "setPatternHeaderRect"
+    | "setPatternColorHeaderRect";
 
 export type Action = {
     type: ActionType;
