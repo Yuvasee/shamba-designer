@@ -114,8 +114,8 @@ export const Lines = () => {
 
         return {
             p1: [
-                drumRect.left - fixedWrapperRect.left + drumRect.width / 5,
-                drumRect.top + (drumRect.height * 4) / 5,
+                drumRect.left - fixedWrapperRect.left + drumRect.width * 0.1,
+                drumRect.top + drumRect.height * 0.6,
             ],
             p2: [
                 colorHeaderRect.left - fixedWrapperRect.left + colorHeaderRect.width,
@@ -152,8 +152,8 @@ export const Lines = () => {
 
         return {
             p1: [
-                drumRect.left - fixedWrapperRect.left + (drumRect.width * 4) / 5,
-                drumRect.top + (drumRect.height * 4) / 5,
+                drumRect.left - fixedWrapperRect.left + drumRect.width * 0.9,
+                drumRect.top + drumRect.height * 0.6,
             ],
             p2: [
                 patternColorHeaderRect.left - fixedWrapperRect.left,

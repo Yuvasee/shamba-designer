@@ -23,6 +23,11 @@ const DrumDiv = styled.div<DrumDivProps>`
     background-repeat: no-repeat;
     margin: 20px;
 
+    svg {
+        position: relative;
+        z-index: 100;
+    }
+
     path {
         cursor: pointer;
         opacity: 0;
