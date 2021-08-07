@@ -11,9 +11,10 @@ type PatternColorDivProps = {
 };
 
 const PATTERN_COLOR_SIZE_PX = 24;
+const PATTERN_COLOR_MARGIN_PX = 3;
 
 const PatternColorContainerDiv = styled.div`
-    max-width: 140px;
+    max-width: ${PATTERN_COLOR_SIZE_PX * 4 + PATTERN_COLOR_MARGIN_PX * 8 + 1}px;
 `;
 
 const PatternColorSelectorDiv = styled.div`
@@ -36,7 +37,7 @@ const PatternColorDiv = styled.div<PatternColorDivProps>`
     width: ${PATTERN_COLOR_SIZE_PX}px;
     height: ${PATTERN_COLOR_SIZE_PX}px;
     background-color: ${(p) => p.color};
-    margin: 3px;
+    margin: ${PATTERN_COLOR_MARGIN_PX}px;
     cursor: ${(p) => (p.selected ? "default" : "pointer")};
     border: ${(p) => (p.border ? "thin solid white" : "none")};
     border-radius: 50%;
