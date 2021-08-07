@@ -1,15 +1,16 @@
 import { Reducer } from "react";
 
-import sound from "./sound";
+import { Sound } from "./sound";
 import { State, Action, ActionMap, Pattern, PatternColorId, DrumColor, ScaleId } from "./types";
 
 export const initState: State = {
+    splashLoaded: false,
+    loaded: false,
     verticalView: false,
     mainState: "splash",
     scale: "akebonoC",
     color: "gray",
     patternColor: 0,
-    sound: sound,
 };
 
 export const reducer: Reducer<State, Action> = (state, action) => {
@@ -43,6 +44,17 @@ export const reducer: Reducer<State, Action> = (state, action) => {
         verticalView: (state: State, payload: boolean) => ({
             ...state,
             verticalView: payload,
+        }),
+
+        setLoaded: (state: State) => ({
+            ...state,
+            loaded: true,
+        }),
+
+        setSplashLoaded: (state: State) => ({
+            ...state,
+            splashLoaded: true,
+            sound: new Sound(),
         }),
     };
 

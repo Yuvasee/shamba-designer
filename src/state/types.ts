@@ -11,13 +11,15 @@ export type Scale = {
 };
 
 export type State = {
+    splashLoaded: boolean;
+    loaded: boolean;
     verticalView: boolean;
     mainState: "splash" | "main";
     scale: ScaleId;
     color: DrumColor;
     pattern?: Pattern;
     patternColor: PatternColorId;
-    sound: Sound;
+    sound?: Sound;
 };
 
 export type ActionType =
@@ -25,7 +27,9 @@ export type ActionType =
     | "setPatternColor"
     | "setColor"
     | "setScale"
-    | "verticalView";
+    | "verticalView"
+    | "setLoaded"
+    | "setSplashLoaded";
 
 export type Action = {
     type: ActionType;

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 import { StateContext } from "../App";
+import { DRUM_SIZE_PX, DRUM_SIZE_XS_PX } from "../constants";
 import { drumColors, scales } from "../state/data";
 import { DrumColor } from "../state/types";
 
@@ -10,9 +11,6 @@ type DrumDivProps = {
     bgShift: number;
     bgMultiply: number;
 };
-
-const DRUM_SIZE_PX = 250;
-const DRUM_SIZE_XS_PX = 210;
 
 const DrumDiv = styled.div<DrumDivProps>`
     width: ${DRUM_SIZE_PX}px;
@@ -45,11 +43,12 @@ export const Drum = () => {
     const [state] = useContext(StateContext);
     const { scale, pattern, color, patternColor, sound } = state;
 
-    const sprite = pattern ? `${color}_${String(pattern + 1).padStart(2, "0")}` : color;
+    const sprite =
+        pattern === undefined ? color : `${color}_${String(pattern + 1).padStart(2, "0")}`;
 
     const handleTapNote = (n: number) => {
         const note = scales[scale].notes[n];
-        sound.playNote(note);
+        sound?.playNote(note);
     };
 
     const bgShift = color === "white" && patternColor === 7 ? 0 : patternColor;

@@ -32,7 +32,3 @@ export class Sound {
         }, 500);
     }
 }
-
-const sound = new Sound();
-
-export default sound;

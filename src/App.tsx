@@ -13,6 +13,7 @@ import { State, Action } from "./state/types";
 import { useEffect } from "react";
 import { Rotate } from "./components/Rotate";
 import { CurrentScale } from "./components/CurrentScale";
+import { Loader } from "./components/Loader";
 
 const AppDiv = styled.div`
     position: fixed;
@@ -44,31 +45,35 @@ export const App = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const { verticalView } = state;
+    const { loaded, verticalView } = state;
 
     return (
         <StateContext.Provider value={[state, dispatch]}>
             <Preloader />
 
-            {verticalView ? (
-                <Rotate />
+            {loaded ? (
+                verticalView ? (
+                    <Rotate />
+                ) : (
+                    <AppDiv>
+                        <AppInnerDiv style={{ marginLeft: "10px" }}>
+                            <Scale />
+                            <Color />
+                        </AppInnerDiv>
+
+                        <AppInnerDiv style={{ alignSelf: "center" }}>
+                            <CurrentScale />
+                            <Drum />
+                        </AppInnerDiv>
+
+                        <AppInnerDiv style={{ marginRight: "10px" }}>
+                            <Pattern />
+                            <PatternColor />
+                        </AppInnerDiv>
+                    </AppDiv>
+                )
             ) : (
-                <AppDiv>
-                    <AppInnerDiv style={{ marginLeft: "10px" }}>
-                        <Scale />
-                        <Color />
-                    </AppInnerDiv>
-
-                    <AppInnerDiv style={{ alignSelf: "center" }}>
-                        <CurrentScale />
-                        <Drum />
-                    </AppInnerDiv>
-
-                    <AppInnerDiv style={{ marginRight: "10px" }}>
-                        <Pattern />
-                        <PatternColor />
-                    </AppInnerDiv>
-                </AppDiv>
+                <Loader />
             )}
         </StateContext.Provider>
     );
