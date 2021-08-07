@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { StateContext } from "../App";
 import { PropertyHeader } from "../elements/PropertyHeader";
 import { patternColors } from "../state/data";
@@ -21,6 +21,17 @@ const PatternColorSelectorDiv = styled.div`
     flex-wrap: wrap;
 `;
 
+const initialAnimation = keyframes`
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(100%);
+        opacity: 1;
+    }
+`;
+
 const PatternColorDiv = styled.div<PatternColorDivProps>`
     width: ${PATTERN_COLOR_SIZE_PX}px;
     height: ${PATTERN_COLOR_SIZE_PX}px;
@@ -30,6 +41,7 @@ const PatternColorDiv = styled.div<PatternColorDivProps>`
     border: ${(p) => (p.border ? "thin solid white" : "none")};
     border-radius: 50%;
     position: relative;
+    animation: ${initialAnimation} 1.5s ease;
 
     &:after {
         content: "";

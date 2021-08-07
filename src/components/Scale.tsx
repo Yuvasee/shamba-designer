@@ -1,10 +1,21 @@
 import { useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { StateContext } from "../App";
 import { MENU_ITEM_COLOR, FONT_FAMILY, MENU_ITEM_SELECTED_COLOR } from "../constants";
 import { PropertyHeader } from "../elements/PropertyHeader";
 import { scales } from "../state/data";
+
+const initialAnimation = keyframes`
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(100%);
+        opacity: 1;
+    }
+`;
 
 const ScaleDiv = styled.div`
     color: ${MENU_ITEM_COLOR};
@@ -26,6 +37,7 @@ const ScaleItemDiv = styled.div<ScaleItemDivProps>`
     margin-left: -10px;
     margin-bottom: 3px;
     white-space: nowrap;
+    animation: ${initialAnimation} 1.5s ease;
 
     &:nth-child(2n-1) {
         margin-bottom: 10px;

@@ -1,10 +1,21 @@
 import { useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { StateContext } from "../App";
 import { FONT_FAMILY, MENU_ITEM_COLOR, MENU_ITEM_SELECTED_COLOR } from "../constants";
 import { PropertyHeader } from "../elements/PropertyHeader";
 import { drumColors } from "../state/data";
+
+const initialAnimation = keyframes`
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(100%);
+        opacity: 1;
+    }
+`;
 
 const ColorDiv = styled.div`
     color: ${MENU_ITEM_COLOR};
@@ -22,6 +33,7 @@ type ColorItemDivProps = {
 const ColorItemDiv = styled.div<ColorItemDivProps>`
     cursor: ${(p) => (p.selected ? "default" : "pointer")};
     margin-left: -10px;
+    animation: ${initialAnimation} 1.5s ease;
 
     &:not(:last-child) {
         margin-bottom: 10px;

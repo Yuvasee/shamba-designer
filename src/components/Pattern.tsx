@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { StateContext } from "../App";
 import { PropertyHeader } from "../elements/PropertyHeader";
@@ -29,6 +29,17 @@ type PatternDivProps = {
     selected?: boolean;
 };
 
+const initialAnimation = keyframes`
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(100%) rotate(360deg);
+        opacity: 1;
+    }
+`;
+
 const PatternDiv = styled.div<PatternDivProps>`
     width: ${PATTERN_SIZE_PX}px;
     height: ${PATTERN_SIZE_PX}px;
@@ -37,6 +48,7 @@ const PatternDiv = styled.div<PatternDivProps>`
     margin: ${MARGIN_PX}px;
     cursor: pointer;
     position: relative;
+    animation: ${initialAnimation} 1.5s ease;
 
     &:hover {
         background-image: url("/assets/i/patterns/${(p) =>
