@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { StateContext } from "../App";
 import { DRUM_SIZE_PX, DRUM_SIZE_XS_PX } from "../constants";
+import { DrumInitial } from "./DrumInitial";
 
 const SIZE_MULTIPLIER = 0.8;
 
@@ -26,14 +27,6 @@ const LoaderOuterDiv = styled.div`
 
     @media screen and (max-height: 18rem) {
         max-width: ${DRUM_SIZE_XS_PX * SIZE_MULTIPLIER}px;
-    }
-
-    img {
-        width: ${DRUM_SIZE_PX * SIZE_MULTIPLIER}px;
-
-        @media screen and (max-height: 18rem) {
-            width: ${DRUM_SIZE_XS_PX * SIZE_MULTIPLIER}px;
-        }
     }
 `;
 
@@ -72,9 +65,7 @@ export const Loader = () => {
 
                 {splashLoaded && (
                     <LoaderAnimation>
-                        <img src="/assets/i/loader/splash_top.png" alt="" />
-                        <img src="/assets/i/loader/splash_mid.png" alt="" />
-                        <img src="/assets/i/loader/splash_bottom.png" alt="" />
+                        <DrumInitial sizeMultiplier={SIZE_MULTIPLIER} />
                     </LoaderAnimation>
                 )}
             </LoaderInnerDiv>
